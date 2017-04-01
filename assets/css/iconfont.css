@@ -1,0 +1,151 @@
+
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1490951831616'); /* IE9*/
+  src: url('iconfont.eot?t=1490951831616#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1490951831616') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1490951831616') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1490951831616#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-dist:before { content: "\e600"; }
+
+.icon-delete:before { content: "\e601"; }
+
+.icon-txt:before { content: "\e6b8"; }
+
+.icon-doc:before { content: "\e6b9"; }
+
+.icon-ppt:before { content: "\e6ba"; }
+
+.icon-pptx:before { content: "\e6bb"; }
+
+.icon-pdf:before { content: "\e6bc"; }
+
+.icon-htm:before { content: "\e6bd"; }
+
+.icon-html:before { content: "\e6be"; }
+
+.icon-docx:before { content: "\e6bf"; }
+
+.icon-xls:before { content: "\e6c0"; }
+
+.icon-srt:before { content: "\e6c1"; }
+
+.icon-xlsx:before { content: "\e6c2"; }
+
+.icon-mp3:before { content: "\e6c3"; }
+
+.icon-wma:before { content: "\e6c4"; }
+
+.icon-document:before { content: "\e6c5"; }
+
+.icon-wav:before { content: "\e6c6"; }
+
+.icon-ogg:before { content: "\e6c7"; }
+
+.icon-ape:before { content: "\e6c8"; }
+
+.icon-midi:before { content: "\e6c9"; }
+
+.icon-flac:before { content: "\e6ca"; }
+
+.icon-aac:before { content: "\e6cb"; }
+
+.icon-music:before { content: "\e6cc"; }
+
+.icon-wmv:before { content: "\e6cd"; }
+
+.icon-asf:before { content: "\e6ce"; }
+
+.icon-asx:before { content: "\e6cf"; }
+
+.icon-rm:before { content: "\e6d0"; }
+
+.icon-rmvb:before { content: "\e6d1"; }
+
+.icon-3gp:before { content: "\e6d2"; }
+
+.icon-mpg:before { content: "\e6d3"; }
+
+.icon-mpe:before { content: "\e6d4"; }
+
+.icon-mpeg:before { content: "\e6d5"; }
+
+.icon-mp4:before { content: "\e6d6"; }
+
+.icon-m4v:before { content: "\e6d7"; }
+
+.icon-mov:before { content: "\e6d8"; }
+
+.icon-avi:before { content: "\e6d9"; }
+
+.icon-dat:before { content: "\e6da"; }
+
+.icon-vob:before { content: "\e6db"; }
+
+.icon-mkv:before { content: "\e6dc"; }
+
+.icon-flv:before { content: "\e6dd"; }
+
+.icon-fla:before { content: "\e6de"; }
+
+.icon-swf:before { content: "\e6df"; }
+
+.icon-viedo:before { content: "\e6e0"; }
+
+.icon-jpeg:before { content: "\e6e1"; }
+
+.icon-jpg:before { content: "\e6e2"; }
+
+.icon-gif:before { content: "\e6e3"; }
+
+.icon-bmp:before { content: "\e6e4"; }
+
+.icon-tif:before { content: "\e6e5"; }
+
+.icon-png:before { content: "\e6e6"; }
+
+.icon-psd:before { content: "\e6e7"; }
+
+.icon-svg:before { content: "\e6e8"; }
+
+.icon-pcx:before { content: "\e6e9"; }
+
+.icon-wmf:before { content: "\e6ea"; }
+
+.icon-emf:before { content: "\e6eb"; }
+
+.icon-dxf:before { content: "\e6ec"; }
+
+.icon-eps:before { content: "\e6ed"; }
+
+.icon-tga:before { content: "\e6ee"; }
+
+.icon-cdr:before { content: "\e6ef"; }
+
+.icon-zip:before { content: "\e6f0"; }
+
+.icon-image:before { content: "\e6f1"; }
+
+.icon-rar:before { content: "\e6f2"; }
+
+.icon-7z:before { content: "\e6f3"; }
+
+.icon-cab:before { content: "\e6f4"; }
+
+.icon-iso:before { content: "\e6f5"; }
+
+.icon-tar:before { content: "\e6f6"; }
+
+.icon-archive:before { content: "\e6f7"; }
+
+.icon-unknow:before { content: "\e6f8"; }
+

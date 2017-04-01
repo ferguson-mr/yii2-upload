@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+    <link rel="stylesheet" href="assets/css/upload.css">
+</head>
+<body>
+<div id="w0" class="upload-frame">
+    <input type="text" id="useravatarform-avatar" class="form-control" name="UserAvatarForm[avatar]" value="">
+    <a id="w0-browser" class="btn btn-success upload-btn" href="javascript:;">upload</a>
+</div>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script src="assets/js/plupload.full.min.js"></script>
+<script src="assets/js/jquery.plupload.js"></script>
+<script>
+    $('#w0').uploaded({url: 'http://bviv.yaf.com/upload'})
+</script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+@mixin browser-func($func, $params){
+  -webkit-#{$func}: $params;
+  -moz-#{$func}: $params;
+  -o-#{$func}: $params;
+  #{$func}: $params;
+}
+.upload-frame{
+  border: 2px rgba(51,51,51, .2) dashed;
+  position: relative;
+  .upload-text-notice{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    margin-left:-10%;
+    margin-top:-2%;
+    color:rgba(51,51,51, .4);
+  }
+  .upload-preview{
+    position: relative;
+    min-height:120px;
+    min-width: 200px;
+    .upload-preview-frame {
+      position: relative;
+      float: left;
+      width: auto;
+      height: auto;
+
+      .upload-preview-img {
+        padding: 5px;
+        img {
+          height: 110px;
+          max-width: 200px;
+          width: auto;
+          border:1px #ccc solid;
+        }
+      }
+      .upload-preview-text {
+        position: absolute;
+        bottom:8px;
+        right:10px;
+        .icon {
+          width: 1.6em;
+          height: 1.6em;
+          vertical-align: -0.15em;
+        }
+      }
+    }
+  }
+  .upload-message{
+    position: absolute;
+    line-height: 14px;
+    font-size: 10px;
+    font-weight: normal;
+    display: inline-block;
+    width: 100%;
+    top:0;
+    left:0;
+    overflow: hidden;
+    z-index:101;
+    &.upload-message-error{
+      background: rgba(51,51,51,.5);
+      color: #fff;
+      padding:2px 5px;
+    }
+    &.upload-message-progress{
+      overflow: hidden;
+      /*border-radius: 4px;
+      -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);*/
+      background: none;
+      .upload-progress-bar {
+        width: 0;
+        height:5px;
+        background: rgb(153, 255, 255);
+        @include browser-func(box-shadow, inset 0 -1px 0 rgb(153, 255, 255));
+        @include browser-func(transition, width .6s ease);
+      }
+    }
+  }
+  /*.upload-button{
+    position: absolute;
+    z-index: 100;
+    right:0;
+    top:0;
+    border-radius: 0;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    &:hover,&:focus,&.focus{
+      color: #333;
+      text-decoration: none;
+    }
+    &:active,&.active{
+      background-image: none;
+      outline: 0;
+      -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+      box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+    }
+  }
+  .upload-message{
+    position: absolute;
+    top:0;
+    left:0;
+    z-index:99;
+    display: inline-block;
+    font-size: 14px;
+    font-weight:normal;
+    vertical-align: middle;
+    padding: 6px 12px;
+    width:100%;
+    &.upload-message-error{
+      color:rgb(255,102,204);
+      //color:#fff;
+    }
+    &.upload-message-notice{
+      color:rgb(102,204,255);
+      //color:#fff;
+    }
+    &.upload-message-progress{
+      overflow: hidden;
+      border-radius: 4px;
+      -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+      height: 100%;
+      .upload-progress-bar {
+        position: absolute;
+        z-index:100;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height:5px;
+        background: rgb(153, 255, 255);
+        -webkit-box-shadow: inset 0 -1px 0 rgb(153, 255, 255);
+        box-shadow: inset 0 -1px 0 rgb(153, 255, 255);
+        -webkit-transition: width .6s ease;
+        -o-transition: width .6s ease;
+        transition: width .6s ease;
+      }
+    }
+  }
+  &.upload-theme-success{
+    .upload-button {
+      color: #fff;
+      background-color: #5cb85c;
+      border-color: #4cae4c;
+    }
+  }*/
+}

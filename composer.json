@@ -1,0 +1,27 @@
+{
+    "name": "ferguson/yii2-upload",
+    "description": "upload a file from local to remote server, a widget based on yii2.",
+    "keywords": ["upload", "plupload", "html5", "input", "file", "widget", "jquery"],
+    "homepage": "https://git.mlfh.info/ferguson/yii2-plupload",
+    "type": "yii2-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ferguson",
+            "email": "Ferguson.Mr.F@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "yiisoft/yii2": "^2.0",
+        "ferguson/yii2-base": "dev-master",
+    },
+    "require-dev": {
+        
+    },
+    "autoload": {
+        "psr-4": {
+            "ferguson\\upload\\": ""
+        }
+    }
+}
