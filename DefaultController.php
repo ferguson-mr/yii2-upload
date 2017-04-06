@@ -48,7 +48,7 @@ class DefaultController extends \yii\web\Controller
 
             return $this->asJson([
                 'status' => true,
-                'url' => $uploader->getFileFullName(),
+                'url' => $uploader->getFileFullUrl(),
                 'ext' => $uploader->getFileExtension(),
             ]);
         } catch (\Exception $e) {
@@ -71,7 +71,11 @@ class DefaultController extends \yii\web\Controller
     {
         $file = Yii::$app->request->post('file');
         $uploader = new FileStorage($this->module->config);
-        $result = $uploader->delete($file);
+
+        $result = true;
+        if($uploader->exist($file)){
+            $result = $uploader->delete($file);
+        }
         if(Yii::$app->request->isAjax){
             return $this->asJson([
                 'status' => $result

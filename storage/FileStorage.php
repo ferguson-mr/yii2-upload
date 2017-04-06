@@ -3,6 +3,7 @@
 namespace ferguson\upload\storage;
 
 use Yii;
+use yii\helpers\Url;
 
 class FileStorage extends Storage implements StorageInterface
 {
@@ -28,14 +29,11 @@ class FileStorage extends Storage implements StorageInterface
 
     public function init()
     {
-        // check system support images library.
-        $this->imagick = extension_loaded('imagick');
-        $this->gd = extension_loaded('gd');
         // init upload.
-        $this->setFilePath(rtrim(Yii::getAlias($this->dir), '\//') . date('/Y/md/'));
-        $this->setFileUrl(rtrim(Yii::getAlias($this->url), '\//') . date('/Y/md/'));
+        $this->setFilePath(Yii::getAlias($this->dir));
+        $this->setFileUrl(Url::to($this->url, true));
         parent::init();
-        $this->createDirectory($this->getFilePath());
+        $this->createDirectory($this->getFilePath() . $this->getFileSubPath());
     }
 
     public function save()
@@ -66,7 +64,17 @@ class FileStorage extends Storage implements StorageInterface
 
     public function delete($file)
     {
-        return @unlink(rtrim(Yii::getAlias($this->dir), '\//') . $file);
+        return @unlink($this->getFilePath() . $this->getTrueFileName($file));
+    }
+
+    public function exist($file)
+    {
+        return @file_exists($this->getFilePath() . $this->getTrueFileName($file));
+    }
+
+    private function getTrueFileName($file)
+    {
+        return str_replace($this->getFileUrl(), '', $file);
     }
 
     private function saveImagick()
@@ -98,7 +106,7 @@ class FileStorage extends Storage implements StorageInterface
     {
         //header('Content-Type: ' . $this->fileMime);
         //$out = "image{$this->fileExtension}";
-        switch ($this->getFileExtension()){
+        switch ($this->getFileExtension()) {
             case 'png':
                 imagepng($this->image, $this->getFileFullPath());
                 break;

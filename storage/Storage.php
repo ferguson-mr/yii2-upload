@@ -7,6 +7,7 @@ use ferguson\upload\helper\MimeHelper;
 
 abstract class Storage
 {
+    private $fileSubPath;
     /**
      * file path on server
      * @var string
@@ -74,11 +75,131 @@ abstract class Storage
         $this->imagick = extension_loaded('imagick');
         $this->gd = extension_loaded('gd');
 
+        $this->generateSubDirectory();
         $this->tmp_directory = rtrim(Yii::getAlias('@webroot'), '\//') . '/tmp/';
         $this->createDirectory($this->tmp_directory);
         $this->fileName = date('YmdHis') . uniqid();
     }
 
+    protected function generateSubDirectory($format = '/Y/md/')
+    {
+        $this->fileSubPath = @date($format);
+        return $this;
+    }
+
+    /**
+     * create directory or chmod directory auth on server.
+     * @param $path
+     * @return null
+     */
+    protected function createDirectory($path)
+    {
+        if (!is_dir($path)) {
+            @mkdir($path, 0755, true);
+        }
+        if (!$d = opendir($path)) {
+            @chmod($path, 0755);
+        }
+        @closedir($d);
+    }
+
+    public function setFileMime($value)
+    {
+        $this->fileMime = $value;
+    }
+
+    public function setFilePath($value)
+    {
+        $this->filePath = $value;
+    }
+
+    public function setFileUrl($value)
+    {
+        $this->fileUrl = $value;
+    }
+
+    /**
+     * return upload file's path on server.
+     * @return mixed
+     */
+    public function getFilePath()
+    {
+        return $this->filePath;
+    }
+
+    public function getFileSubPath()
+    {
+        return $this->fileSubPath;
+    }
+
+    public function getFileFullPath()
+    {
+        return $this->getFilePath() . $this->getFileSubPath() . $this->getFileFullName();
+    }
+
+    /**
+     * return upload file's url host.
+     * @return mixed
+     */
+    public function getFileUrl()
+    {
+        return $this->fileUrl;
+    }
+
+    /**
+     * return upload file's url whether can direct open in browser.
+     * @return string
+     */
+    public function getFileFullUrl()
+    {
+        return $this->getFileUrl() . $this->getFileSubPath(). $this->getFileFullName();
+    }
+
+    /**
+     * return upload file's name whether created by server without extension.
+     * @return mixed
+     */
+    public function getFileName()
+    {
+        return $this->fileName;
+    }
+
+    /**
+     * return upload file's name whether created by server with extension.
+     * @return string
+     */
+    public function getFileFullName()
+    {
+        return $this->getFileName() . '.' . $this->getFileExtension();
+    }
+
+    public function getFileFullThumbName()
+    {
+        return '';
+    }
+
+    /**
+     * return upload file's extension.
+     * @return mixed
+     */
+    public function getFileExtension()
+    {
+        return $this->fileExtension;
+    }
+
+    public function getFileSize()
+    {
+    }
+
+    public function getFileMime()
+    {
+        return $this->fileMime;
+    }
+
+
+    /************************************************************************
+     *
+     ************************************************************************/
     protected function upload()
     {
         $parts = Yii::$app->request->post('chunks', 1);
@@ -88,7 +209,7 @@ abstract class Storage
         if (!$tmp_file = @fopen($this->tmp_filename, $parts ? 'ab' : 'wb')) {
             throw new \Exception('Failed to open tmp stream.', 102);
         }
-        if ($_FILES){
+        if ($_FILES) {
             $tmp = $_FILES['file'];
             switch ($tmp['error']) {
                 case UPLOAD_ERR_INI_SIZE:
@@ -155,98 +276,5 @@ abstract class Storage
             throw new \Exception('Failed to uploaded, can not support file mime.', 106);
         }
         $this->fileExtension = array_search($this->fileMime, $allowMimes);
-    }
-
-    /**
-     * create directory or chmod directory auth on server.
-     * @param $path
-     * @return null
-     */
-    protected function createDirectory($path)
-    {
-        if (!is_dir($path)){
-            @mkdir($path, 0755, true);
-        }
-        if(!$d = opendir($path)){
-            @chmod($path, 0755);
-        }
-        @closedir($d);
-    }
-
-    public function setFileMime($value){
-        $this->fileMime = $value;
-    }
-
-    public function setFilePath($value){
-        $this->filePath = $value;
-    }
-
-    /**
-     * return upload file's path on server.
-     * @return mixed
-     */
-    public function getFilePath()
-    {
-        return $this->filePath;
-    }
-
-    public function setFileUrl($value){
-        $this->fileUrl = $value;
-    }
-
-    /**
-     * return upload file's extension.
-     * @return mixed
-     */
-    public function getFileExtension()
-    {
-        return $this->fileExtension;
-    }
-
-    /**
-     * return upload file's url host.
-     * @return mixed
-     */
-    public function getFileUrl()
-    {
-        return $this->fileUrl;
-    }
-
-
-
-    public function getFileFullPath(){
-        return $this->getFilePath() . $this->getFileNameWithExtension();
-    }
-
-    /**
-     * return upload file's name whether created by server without extension.
-     * @return mixed
-     */
-    public function getFileName()
-    {
-        return $this->fileName;
-    }
-
-    /**
-     * return upload file's name whether created by server with extension.
-     * @return string
-     */
-    public function getFileNameWithExtension()
-    {
-        return $this->fileName . '.' . $this->fileExtension;
-    }
-
-    /**
-     * return upload file's url whether can direct open in browser.
-     * @return string
-     */
-    public function getFileFullName()
-    {
-        return $this->getFileUrl() . $this->getFileNameWithExtension();
-    }
-
-    public function getFileFullThumbName()
-    {
-        return '';
     }
 }

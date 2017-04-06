@@ -9,4 +9,6 @@ interface StorageInterface
     public function resize();
 
     public function delete($file);
+
+    public function exist($file);
 }
