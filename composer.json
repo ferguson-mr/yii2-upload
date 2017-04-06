@@ -14,10 +14,7 @@
     "minimum-stability": "dev",
     "require": {
         "yiisoft/yii2": "^2.0",
-        "ferguson/yii2-base": "dev-master",
-    },
-    "require-dev": {
-        
+        "ferguson/yii2-base": "dev-master"
     },
     "autoload": {
         "psr-4": {
