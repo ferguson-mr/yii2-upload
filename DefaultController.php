@@ -43,7 +43,7 @@ class DefaultController extends \yii\web\Controller
             } else {
                 $uploader = new FileStorage($this->module->config);
             }*/
-            $uploader = new FileStorage(Yii::$app->params['ferguson.upload.config']);
+            $uploader = new FileStorage($this->module->params);
             $uploader->save();
 
             return $this->asJson([
@@ -70,7 +70,7 @@ class DefaultController extends \yii\web\Controller
     public function actionDelete()
     {
         $file = Yii::$app->request->post('file');
-        $uploader = new FileStorage($this->module->config);
+        $uploader = new FileStorage($this->module->params);
 
         $result = true;
         if($uploader->exist($file)){

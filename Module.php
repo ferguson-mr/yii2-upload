@@ -15,18 +15,14 @@ class Module extends \yii\base\Module
 
     public $storage = 'file';
 
-    public $config = [];
-
     public function init()
     {
-        if(!isset($this->config['dir']) || empty($this->config['dir'])){
+        if(!isset($this->params['dir']) || empty($this->params['dir'])){
             throw new \Exception('Invalid config setting, dir can not be blank.');
         }
-        if(!isset($this->config['url']) || empty($this->config['url'])){
+        if(!isset($this->params['url']) || empty($this->params['url'])){
             throw new \Exception('Invalid config setting, url can not be blank.');
         }
-        \Yii::$app->params['ferguson.upload.storage'] = $this->storage;
-        \Yii::$app->params['ferguson.upload.config'] = $this->config;
         parent::init();
     }
 }

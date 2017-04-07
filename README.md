@@ -36,7 +36,7 @@ return [
         'upload' => [
             'class' => \ferguson\upload\Module::className(),
             'storage' => 'file', // which storage used, default `file` means file will be upload on server. other storages could be supported soon.
-            'config' => [
+            'params' => [
                 'dir' => '@webroot', // file upload directory, default `@webroot`, you can customer.
                 'url' => '@web', // file uploaded host, default `@web`, you can customer.
                 'resize' => [
@@ -71,7 +71,12 @@ use in view pages.
 use ferguson\upload\Upload;
 
 //Normal with ActiveForm & model
-echo $form->field($model, 'logo')->widget(Upload::className(), Array $config = []);
+echo $form->field($model, 'logo')->widget(Upload::className(), [
+    'clientOptions' => [
+        'type' => Upload::TYPE_IMAGE,
+        'max_size' => '2mb',
+    ]
+]);
 ```
 
 

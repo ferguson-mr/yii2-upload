@@ -40,16 +40,17 @@ class FileStorage extends Storage implements StorageInterface
     {
         $this->upload();
 
-        if (!$this->imagick) {
+        if (!$this->image) {
+            rename($this->tmp_filename, $this->getFileFullPath());
+            return true;
+        }
+
+        if ($this->imagick) {
             $this->image = new \Imagick($this->tmp_filename);
             $this->saveImagick();
         } elseif ($this->gd) {
             $this->image = imagecreatefromstring(@file_get_contents($this->tmp_filename));
             $this->saveGD();
-        }
-
-        if (!$this->image) {
-            rename($this->tmp_filename, $this->getFileFullPath());
         }
     }
 
@@ -64,17 +65,21 @@ class FileStorage extends Storage implements StorageInterface
 
     public function delete($file)
     {
-        return @unlink($this->getFilePath() . $this->getTrueFileName($file));
+        return @unlink($this->absoluteFile($file));
     }
 
     public function exist($file)
     {
-        return @file_exists($this->getFilePath() . $this->getTrueFileName($file));
+        return @file_exists($this->absoluteFile($file));
     }
 
-    private function getTrueFileName($file)
+    public function relativeFile($file)
     {
         return str_replace($this->getFileUrl(), '', $file);
+    }
+
+    public function absoluteFile($file){
+        return $this->getFilePath() . $this->relativeFile($file);
     }
 
     private function saveImagick()
